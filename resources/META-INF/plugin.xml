@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>idea.plugins.thirdparty.filecompletion</id>
   <name>File completion plugin</name>
-  <version>1.03</version>
+  <version>1.04</version>
   <vendor url="https://github.com/venkato/ideafilecompletion">File completion plugin</vendor>
 
   <description><![CDATA[
@@ -34,16 +34,28 @@
   <idea-version since-build="145"/>
 
 
+
+  <application-components>
+    <component>
+      <interface-class>net.sf.jremoterun.utilities.nonjdk.idea.init.Component1Interface</interface-class>
+      <implementation-class>net.sf.jremoterun.utilities.nonjdk.idea.init.Component1Impl</implementation-class>
+    </component>
+  </application-components>
+
+
+  <application-components>
+    <component>
+      <interface-class>idea.plugins.thirdparty.filecompletion.share.InitComponentI</interface-class>
+      <implementation-class>idea.plugins.thirdparty.filecompletion.share.InitComponentImpl</implementation-class>
+    </component>
+  </application-components>
+
+
   <depends>org.intellij.intelliLang</depends>
   <depends>org.intellij.groovy</depends>
   <depends>com.intellij.uiDesigner</depends>
 
 
-  <extensions defaultExtensionNs="com.intellij">
-    <applicationConfigurable groupId="tools" instance="idea.plugins.thirdparty.filecompletion.share.Ideasettings.Configuration"/>
-    <applicationService serviceImplementation="idea.plugins.thirdparty.filecompletion.share.Ideasettings.OpenFileActionSettings"/>
-    <errorHandler implementation="com.sylvanaar.idea.errorreporting.YouTrackBugReporter"/>
-  </extensions>
 
   <actions>
 
@@ -53,6 +65,17 @@
 
 
     <action class="idea.plugins.thirdparty.filecompletion.share.OpenFileInExternalToolAction" id="idea.plugins.thirdparty.filecompletion.share.OpenFileInExternalToolAction" text="Open file in external tool" description="Open file in external tool" icon="/icons/open_file.png">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+    </action>
+
+
+
+    <action class="idea.plugins.thirdparty.filecompletion.share.FileQuickInfoAction" id="idea.plugins.thirdparty.filecompletion.share.FileQuickInfoAction" text="Display file path" description="Display file path" icon="/icons/open_file.png">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+    </action>
+
+
+    <action class="idea.plugins.thirdparty.filecompletion.share.FindJarInMavenAction" id="idea.plugins.thirdparty.filecompletion.share.FindJarInMavenAction" text="Find jar in maven" description="Find jar in maven" icon="/icons/open_file.png">
       <add-to-group group-id="EditorPopupMenu" anchor="first"/>
     </action>
 
@@ -73,8 +96,8 @@
   <extensions defaultExtensionNs="com.intellij">
     <completion.contributor language="Groovy" implementationClass="idea.plugins.thirdparty.filecompletion.share.MyGroovyCompletionContributor"/>
     <completion.contributor language="JAVA" implementationClass="idea.plugins.thirdparty.filecompletion.share.MyJavaCompletionContributor"/>
-    <documentationProvider implementation="idea.plugins.thirdparty.filecompletion.jrr.MyDocumentationProviderImpl" />
-    <gotoDeclarationHandler implementation="idea.plugins.thirdparty.filecompletion.jrr.GotoDeclarationHandlerImpl" />
+    <documentationProvider implementation="idea.plugins.thirdparty.filecompletion.jrr.a.MyDocumentationProviderImpl" />
+    <gotoDeclarationHandler implementation="idea.plugins.thirdparty.filecompletion.jrr.a.GotoDeclarationHandlerImpl" />
 
   </extensions>
 
